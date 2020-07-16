@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script src="app.js"></script>
+     <title>Sell</title>
+</head>
+<body>
+    <header ng-include="header.html"></header>
+ <div class="content">
+   <div ng-controller="myAppController">
+       <button ng-click="order = 'name'">Order by Name</button>
+       <button ng-click="order = 'price'">Order by Price</button>
+       <input type="text" ng-model="search" placeholder="search" />
+         <ul>
+           <li ng-repeat="item in items | orderBy: order | filter: search " ng-show="item.available">
+              <h3> {{item.name}} - {{item.price | currency }}</h3>
+              <div class="remove" ng-click="removeItem(item)">x</div>
+           <span class="color" style="background: {{item.color}} ">{{item.color}} color </span>
+           </li>
+         </ul>
+      
+    </div>
+  </div>
+ </body>
+</html>
